@@ -1,0 +1,9 @@
+# Артефакти збірки CLion
+cmake-build-debug/
+cmake-build-release/
+
+# Файли налаштувань середовища
+.idea/
+
+# Секретні файли
+.env
