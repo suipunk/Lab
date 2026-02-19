@@ -37,10 +37,13 @@ bool checkAnswer(const std::string& input, int semitones) {
     std::string correct = intervalNames[semitones];
     std::string shortCode = correct.substr(0, correct.find(' ')); // наприклад "P5"
     std::string in = input;
+    
+    // Перевірка без урахування регістру для зручності
     for (auto &c : in) c = std::toupper(c);
+    std::string shortCodeUpper = shortCode;
+    for (auto &c : shortCodeUpper) c = std::toupper(c);
 
-    if (in == shortCode) return true;
-    if (in == correct) return true;
+    if (in == shortCodeUpper) return true;
     return false;
 }
 
@@ -56,7 +59,8 @@ void playTone(double freq, int durationMs) {
 
 int main() {
     std::cout << "Simple Interval Trainer (Console Edition)\n";
-    std::cout << "Enter the interval (e.g. P5, m3, M2, TT) or 'exit' to quit.\n\n";
+    // ОНОВЛЕНО: Додано інструкцію для повтору
+    std::cout << "Enter the interval (e.g. P5, m3, M2, TT), 'r' to replay, or 'exit' to quit.\n\n";
 
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -73,28 +77,41 @@ int main() {
         double freq1 = midiToFreq(root);
         double freq2 = midiToFreq(second);
 
-        std::cout << "Playing interval..." << std::endl;
-        playTone(freq1, 500);
-        playTone(freq2, 500);
+        bool needNewInterval = true;
+        
+        while (needNewInterval) {
+            std::cout << "Playing interval..." << std::endl;
+            playTone(freq1, 500);
+            playTone(freq2, 500);
 
-        std::cout << "Your answer: ";
-        std::string input;
-        std::cin >> input;
-        if (input == "exit" || input == "EXIT") break;
+            std::cout << "Your answer: ";
+            std::string input;
+            std::cin >> input;
+            
+            if (input == "exit" || input == "EXIT") {
+                std::cout << "\nFinal Score: " << correct << " / " << total << "\n";
+                std::cout << "Thanks for training your ear! \n";
+                return 0; // Вихід з програми
+            }
+            
+            // НОВА ФУНКЦІЯ: Повтор інтервалу
+            if (input == "r" || input == "R") {
+                std::cout << "Replaying...\n";
+                continue; // Повертаємось на початок внутрішнього циклу, щоб зіграти ще раз
+            }
 
-        total++;
-        if (checkAnswer(input, semitones)) {
-            correct++;
-            std::cout << "Correct! It was " << intervalNames[semitones] << "\n\n";
-        } else {
-            std::cout << "Wrong. It was " << intervalNames[semitones] << "\n\n";
+            total++;
+            if (checkAnswer(input, semitones)) {
+                correct++;
+                std::cout << "Correct! It was " << intervalNames[semitones] << "\n\n";
+            } else {
+                std::cout << "Wrong. It was " << intervalNames[semitones] << "\n\n";
+            }
+
+            std::cout << "Score: " << correct << " / " << total << "\n";
+            std::cout << "-----------------------------\n";
+            needNewInterval = false; // Виходимо з внутрішнього циклу, генеруємо новий інтервал
         }
-
-        std::cout << "Score: " << correct << " / " << total << "\n";
-        std::cout << "-----------------------------\n";
     }
-
-    std::cout << "\nFinal Score: " << correct << " / " << total << "\n";
-    std::cout << "Thanks for training your ear! 👂🎶\n";
     return 0;
 }
