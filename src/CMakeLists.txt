@@ -3,4 +3,5 @@ project(Git)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Git main.cpp)
+add_executable(Git main.cpp
+)
