@@ -1,0 +1,62 @@
+body {
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+.trainer-container {
+    max-width: 500px;
+    margin: 50px auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.controls button, #answer-section button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    transition: background 0.3s;
+}
+
+.controls button:hover, #answer-section button:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.feedback {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    min-height: 24px;
+}
+
+.success { color: #28a745; }
+.error { color: #dc3545; }
+
+.score-board {
+    margin-top: 30px;
+    font-size: 20px;
+    border-top: 2px solid #eee;
+    padding-top: 15px;
+}

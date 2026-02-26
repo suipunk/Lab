@@ -4,6 +4,6 @@ cmake-build-release/
 
 # Файли налаштувань середовища
 .idea/
-
+node_modules/
 # Секретні файли
 .env
