@@ -18,6 +18,4 @@ function checkAnswerLogic(semitones, userInput) {
 }
 
 // Експортуємо функції ТІЛЬКИ для тестів (браузер цей блок проігнорує)
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { midiToFreq, checkAnswerLogic };
-}
+export { intervalNames, midiToFreq, checkAnswerLogic };

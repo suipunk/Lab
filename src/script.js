@@ -1,3 +1,5 @@
+import { intervalNames, midiToFreq, checkAnswerLogic } from './logic.js';
+
 // Стан нашої програми
 let isPlaying = false;
 let currentInterval = null;
@@ -117,3 +119,9 @@ document.addEventListener('keyup', (e) => {
         replayInterval();
     }
 });
+
+// Вивід статусу застосунку згідно з Лаб №3
+const statusEl = document.getElementById('app-status');
+if (statusEl) {
+    statusEl.textContent = import.meta.env.VITE_APP_STATUS;
+}
