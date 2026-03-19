@@ -42,3 +42,5 @@ jobs:
       # Крок 6: Перевірка збірки артефакту
       - name: Build for production
         run: npm run build
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
