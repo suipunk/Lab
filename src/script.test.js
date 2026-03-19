@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-const { midiToFreq, checkAnswerLogic } = require('./logic.js');
+import { midiToFreq, checkAnswerLogic } from './logic.js';
 describe('Бізнес-логіка: Тренажер Інтервалів', () => {
 
     // Блок 1: Тестування математики (перетворення MIDI в частоту)
