@@ -6,6 +6,20 @@ posthog.init('phc_yydQmedtpkpLHjZ2MFCSmpskcsb4iaUNQMdML9buAond', {
     person_profiles: 'identified_only'
 });
 
+// Чекаємо, поки PostHog завантажить прапорці
+posthog.onFeatureFlags(() => {
+    const hintButton = document.getElementById('hint-btn');
+
+    // Перевіряємо, чи існує кнопка та чи увімкнено прапорець
+    if (hintButton) {
+        if (posthog.isFeatureEnabled('show-hint-button')) {
+            hintButton.style.display = 'inline-block'; // Показуємо кнопку
+        } else {
+            hintButton.style.display = 'none'; // Ховаємо кнопку
+        }
+    }
+});
+
 // Стан нашої програми
 let isPlaying = false;
 let currentInterval = null;
