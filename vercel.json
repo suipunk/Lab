@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/ingest/static/:match*",
+      "destination": "https://eu-assets.i.posthog.com/static/:match*"
+    },
+    {
+      "source": "/ingest/:match*",
+      "destination": "https://eu.i.posthog.com/:match*"
+    }
+  ]
+}
