@@ -2,8 +2,7 @@ import { intervalNames, midiToFreq, checkAnswerLogic } from './logic.js';
 import posthog from 'posthog-js';
 
 posthog.init('phc_yydQmedtpkpLHjZ2MFCSmpskcsb4iaUNQMdML9buAond', {
-    api_host: window.location.origin + '/ingest', // Відправляємо на наш власний домен
-    ui_host: 'https://eu.posthog.com', // Залишаємо для коректної роботи плеєра запису сесій
+    api_host: 'https://eu.posthog.com',
     person_profiles: 'identified_only'
 });
 
