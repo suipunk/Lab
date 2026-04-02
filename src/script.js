@@ -47,7 +47,7 @@ function playTone(freq, durationMs, audioCtx) {
 
     // Плавне затухання, щоб звук не "клацав"
     gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + durationMs / 1000);
+    gainNode.gain.exponentialRampToValueAtTime(0.005, audioCtx.currentTime + durationMs / 1000);
 
     oscillator.connect(gainNode);
     gainNode.connect(audioCtx.destination);
