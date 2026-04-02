@@ -78,6 +78,7 @@ function generateAndPlayInterval() {
     answerSection.style.display = 'block'; // Показуємо поле вводу
 
     playIntervalNotes(root, semitones);
+    posthog.capture('interval_generated');
 }
 
 function replayInterval() {
@@ -108,6 +109,11 @@ function handleAnswer() {
     currentInterval = null;
     answerSection.style.display = 'none'; // Ховаємо поле вводу до наступної ноти
     btnReplay.disabled = true;
+    // Якщо відповідь правильна
+    posthog.capture('answer_submitted', { isCorrect: true });
+
+    // якщо неправильна
+    posthog.capture('answer_submitted', { isCorrect: false });
 }
 
 // 4. Прив'язуємо дії до кнопок
