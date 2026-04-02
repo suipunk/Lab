@@ -2,7 +2,7 @@ import { intervalNames, midiToFreq, checkAnswerLogic } from './logic.js';
 import posthog from 'posthog-js';
 
 posthog.init('phc_yydQmedtpkpLHjZ2MFCSmpskcsb4iaUNQMdML9buAond', {
-    api_host: 'https://eu.posthog.com',
+    api_host: 'https://eu.i.posthog.com',
     person_profiles: 'identified_only'
 });
 
