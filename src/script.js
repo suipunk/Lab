@@ -20,6 +20,18 @@ posthog.onFeatureFlags(() => {
     }
 });
 
+Sentry.init({
+    dsn: "https://96f31a4b86a218af9d022db8efa9c1dc@o4511307442159616.ingest.de.sentry.io/4511307463131216",
+    integrations: [
+        new Sentry.BrowserTracing(),
+        new Sentry.Replay(),
+    ],
+    tracesSampleRate: 1.0, // Записуємо 100% транзакцій для тестів
+    replaysSessionSampleRate: 0.1,
+    replaysOnErrorSampleRate: 1.0, // Обов'язково записувати відео, якщо сталась помилка
+    environment: "development"
+});
+
 // Стан нашої програми
 let isPlaying = false;
 let currentInterval = null;
@@ -151,3 +163,7 @@ const statusEl = document.getElementById('app-status');
 if (statusEl) {
     statusEl.textContent = import.meta.env.VITE_APP_STATUS;
 }
+
+document.getElementById('break-btn').addEventListener('click', function() {
+    throw new Error("Sentry Test Error: Vanilla JS is broken!");
+});
